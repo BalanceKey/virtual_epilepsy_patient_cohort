@@ -10,8 +10,7 @@ import pandas as pd
 import sys
 import mne
 from src.utils import *
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare_ret
+from src.utils_functions import vep_prepare_ret
 
 
 def plot_signal(t, y, energy_ch, ch_names, seeg_info=None, scaleplt=0.001):

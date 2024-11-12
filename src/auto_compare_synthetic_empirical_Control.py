@@ -6,8 +6,7 @@ import pandas as pd
 from scipy.stats import pearsonr
 from sewar.full_ref import mse, rmse
 from src.utils import *
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare_ret, vep_prepare
+from src.utils_functions import vep_prepare_ret
 
 
 #%% Load patient data, compute envelope and seizure onset for each channel
@@ -51,7 +50,7 @@ ts_on = base_length
 ts_off = base_length
 ts_cut = ts_on/4
 # ts_off_cut = seeg_info['offset'] + ts_off
-slp = vep_prepare.compute_slp(seeg_info, bip, hpf=hpf, lpf=lpf, ts_on=ts_on, ts_off=ts_off)
+slp = vep_prepare_ret.compute_slp(seeg_info, bip, hpf=hpf, lpf=lpf, ts_on=ts_on, ts_off=ts_off)
 expected_shape = round((seeg_info['offset'] - seeg_info['onset'] + ts_on + ts_off) * seeg_info['sfreq'])
 assert np.fabs(slp.shape[0] - expected_shape) < 5, f'Expected shape: {expected_shape}, got {slp.shape[0]}'
 removebaseline = True

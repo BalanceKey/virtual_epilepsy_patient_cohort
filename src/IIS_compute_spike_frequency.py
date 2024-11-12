@@ -5,15 +5,13 @@ import sys
 import mne
 import os
 import pandas as pd
-from virtual_epileptic_cohort.src.utils import *
-from virtual_epileptic_cohort.src.utils_simulate import read_one_seeg_re_iis
+from src.utils import *
+from src.utils_functions.utils_simulate import read_one_seeg_re_iis
 
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare_ret
+from src.utils_functions import vep_prepare_ret
 roi = vep_prepare_ret.read_vep_mrtrix_lut()
 
-sys.path.insert(2, '/Users/dollomab/MyProjects/Epinov_trial/interictal_patients/src/')
-import detect_spikes
+from src.utils_functions import detect_spikes
 
 from scipy.signal import butter, sosfiltfilt
 def butter_bandpass(lowcut, highcut, fs, order=5):

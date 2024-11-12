@@ -1,10 +1,8 @@
 
 import json
 import mne
-import sys
 import numpy as np
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare_ret
+from src.utils_functions import vep_prepare_ret
 from scipy.optimize import fsolve
 
 def get_equilibrium(model, init):
@@ -18,6 +16,7 @@ def get_equilibrium(model, init):
 
     x = fsolve(func, init)
     return x
+
 def read_one_seeg_re_iis(subj_proc_dir, jsfname):
     ''' To read interictal recordings '''
     with open(jsfname, "r") as fd:

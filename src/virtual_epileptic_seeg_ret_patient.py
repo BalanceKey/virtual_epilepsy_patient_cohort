@@ -13,12 +13,9 @@ import scipy.signal as signal
 import time as tm
 import pandas as pd
 import zipfile
-import sys
 import csv
 import json
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare_ret
-import vep_prepare
+from src.utils_functions import vep_prepare_ret
 roi = vep_prepare_ret.read_vep_mrtrix_lut()
 
 clinical_hypothesis = True
@@ -73,7 +70,7 @@ seeg_info, bip, gain, gain_prior = vep_prepare_ret.read_one_seeg_re(subj_proc_di
 # plot real data at sensor level with 5 sec before and after
 base_duration = 10
 scaleplt = 0.002
-f = vep_prepare.plot_sensor_data(bip, gain_prior, seeg_info, base_duration, data_scaleplt=scaleplt,
+f = vep_prepare_ret.plot_sensor_data(bip, gain_prior, seeg_info, base_duration, data_scaleplt=scaleplt,
                                  title=f'{pid}:ts_real_data')
 plt.show()
 

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
 # Importing libraries
 from tvb.simulator.lab import *
 import numpy as np
@@ -12,17 +11,17 @@ import os.path as op
 from pybv import write_brainvision
 import pandas as pd
 import time as tm
-import sys
 import csv
 import json
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/utils/')
-sys.path.insert(2, '/Users/dollomab/MyProjects/Epileptor3D')
-import vep_prepare_ret
-import vep_prepare
-from epileptor3D_collab.src.model4 import Epileptor3D4
-from epileptor3D_collab.src.model4_2populations import EpileptorStim2Populations
-from epileptor3D_collab.src.integrator import HeunDeterministicAdapted, HeunStochasticAdapted
+# sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
+# sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/utils/')
+# sys.path.insert(2, '/Users/dollomab/MyProjects/Epileptor3D')
+# import vep_prepare_ret
+# import vep_prepare
+from src.utils_functions import vep_prepare_ret
+from src.utils_functions.model import EpileptorStim
+from src.utils_functions.model_2populations import EpileptorStim2Populations
+from src.utils_functions.integrator import HeunDeterministicAdapted, HeunStochasticAdapted
 roi = vep_prepare_ret.read_vep_mrtrix_lut()
 
 clinical_hypothesis = False
@@ -87,7 +86,7 @@ if plot:
     # plot real data at sensor level with 5 sec before and after
     base_duration = 10
     scaleplt = 0.002
-    f = vep_prepare.plot_sensor_data(bip, gain_prior, seeg_info, base_duration, data_scaleplt=scaleplt,
+    f = vep_prepare_ret.plot_sensor_data(bip, gain_prior, seeg_info, base_duration, data_scaleplt=scaleplt,
                                      title=f'{pid}:ts_real_data')
     plt.show()
 

@@ -18,15 +18,11 @@ import time as tm
 import sys
 import csv
 import json
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/utils/')
-sys.path.insert(2, '/Users/dollomab/MyProjects/Epileptor3D')
-import vep_prepare_ret
-import vep_prepare
 from src.utils import isfloat
-from epileptor3D_collab.src.model4 import Epileptor3D4
-from epileptor3D_collab.src.model4_2populations import EpileptorStim2Populations
-from epileptor3D_collab.src.integrator import HeunDeterministicAdapted, HeunStochasticAdapted
+from src.utils_functions import vep_prepare_ret
+from src.utils_functions.model import EpileptorStim
+from src.utils_functions.model_2populations import EpileptorStim2Populations
+from src.utils_functions.integrator import HeunDeterministicAdapted, HeunStochasticAdapted
 roi = vep_prepare_ret.read_vep_mrtrix_lut()
 
 clinical_hypothesis = False

@@ -18,12 +18,9 @@ import glob
 import sys
 import csv
 import json
-from virtual_epileptic_cohort.src.utils_simulate import read_one_seeg_re_iis
+from src.utils_functions.utils_simulate import read_one_seeg_re_iis
 
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare_ret
-import vep_prepare
-
+from src.utils_functions import vep_prepare_ret
 roi = vep_prepare_ret.read_vep_mrtrix_lut()
 
 clinical_hypothesis = False

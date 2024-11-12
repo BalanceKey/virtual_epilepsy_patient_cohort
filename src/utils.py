@@ -8,9 +8,7 @@ import matplotlib.gridspec as gridspec
 import matplotlib.colors as mcolors
 from matplotlib.transforms import Affine2D
 from matplotlib.ticker import StrMethodFormatter
-import sys
-sys.path.append('/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare
+from src.utils_functions import vep_prepare_ret
 
 from sklearn.decomposition import PCA
 
@@ -205,10 +203,10 @@ def compute_slp_sim(seeg, hpf=10.0, lpf=1.0, sfreq=1000, remove_outliers=False):
 
     # High pass filter the data
     if hpf is not None:
-        slp = vep_prepare.bfilt(slp, sfreq, hpf, 'highpass', axis=0)
+        slp = vep_prepare_ret.bfilt(slp, sfreq, hpf, 'highpass', axis=0)
 
     # Compute seeg log power
-    slp = vep_prepare.seeg_log_power(slp, 100)
+    slp = vep_prepare_ret.seeg_log_power(slp, 100)
 
     # Remove outliers i.e data > 2*sd
     if remove_outliers:
@@ -218,7 +216,7 @@ def compute_slp_sim(seeg, hpf=10.0, lpf=1.0, sfreq=1000, remove_outliers=False):
 
     # Low pass filter the data to smooth
     if lpf is not None:
-        slp = vep_prepare.bfilt(slp, sfreq, lpf, 'lowpass', axis=0)
+        slp = vep_prepare_ret.bfilt(slp, sfreq, lpf, 'lowpass', axis=0)
     return slp
 
 def compute_onset(slp, start, end, thresh=0.1):

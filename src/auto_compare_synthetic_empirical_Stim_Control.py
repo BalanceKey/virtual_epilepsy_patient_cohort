@@ -4,8 +4,7 @@ import math
 from scipy.stats import pearsonr
 from sewar.full_ref import mse, rmse
 from src.utils import *
-sys.path.insert(1, '/Users/dollomab/MyProjects/Epinov_trial/VEP_Internal_Science/fit/')
-import vep_prepare_ret, vep_prepare
+from src.utils_functions import vep_prepare_ret
 
 #%% Load patient data, compute envelope and seizure onset for each channel
 pid = 'id003_mg'  # 'id005_ft'#'id003_mg' # TODO change
@@ -39,7 +38,7 @@ replace_signal = True # It seems that 1Hz stimulation doesn't need to be replace
 if szr_type == 'stimulated' and replace_signal:
     replace_onset = seeg_info['onset'] - 5
     replace_offset = seeg_info['onset']
-    bip = vep_prepare.replace_part_of_signal_previous(bip, seeg_info, replace_onset, replace_offset, ch_names='all')
+    bip = vep_prepare_ret.replace_part_of_signal_previous(bip, seeg_info, replace_onset, replace_offset, ch_names='all')
 
 # load electrode positions
 ch_names = bip.ch_names
@@ -56,7 +55,7 @@ ts_on = base_length
 ts_off = base_length
 ts_cut = ts_on/4
 # ts_off_cut = seeg_info['offset'] + ts_off
-slp = vep_prepare.compute_slp(seeg_info, bip, hpf=hpf, lpf=lpf, ts_on=ts_on, ts_off=ts_off)
+slp = vep_prepare_ret.compute_slp(seeg_info, bip, hpf=hpf, lpf=lpf, ts_on=ts_on, ts_off=ts_off)
 expected_shape = round((seeg_info['offset'] - seeg_info['onset'] + ts_on + ts_off) * seeg_info['sfreq'])
 assert np.fabs(slp.shape[0] - expected_shape) < 5, f'Expected shape: {expected_shape}, got {slp.shape[0]}'
 removebaseline = True
@@ -110,17 +109,17 @@ replace_signal = True
 if szr_type == 'stimulated' and replace_signal:
     replace_onset = 1
     replace_offset = 2
-    raw_sim = vep_prepare.replace_part_of_signal_previous(raw, raw.info, replace_onset, replace_offset, ch_names='all')
+    raw_sim = vep_prepare_ret.replace_part_of_signal_previous(raw, raw.info, replace_onset, replace_offset, ch_names='all')
     replace_onset = 2
     replace_offset = 3
-    raw_sim = vep_prepare.replace_part_of_signal_previous(raw_sim, raw.info, replace_onset, replace_offset, ch_names='all')
+    raw_sim = vep_prepare_ret.replace_part_of_signal_previous(raw_sim, raw.info, replace_onset, replace_offset, ch_names='all')
     replace_onset = 3
     replace_offset = 4
-    raw = vep_prepare.replace_part_of_signal_previous(raw_sim, raw.info, replace_onset, replace_offset, ch_names='all')
+    raw = vep_prepare_ret.replace_part_of_signal_previous(raw_sim, raw.info, replace_onset, replace_offset, ch_names='all')
     # replace_onset = 0
     # replace_offset = 2.7
     # replace_scale = 0.7
-    # raw = vep_prepare.replace_part_of_signal(raw, raw.info, replace_onset, replace_offset, replace_scale, ch_names='all')
+    # raw = vep_prepare_ret.replace_part_of_signal(raw, raw.info, replace_onset, replace_offset, replace_scale, ch_names='all')
 
 y_sim = raw.get_data()
 y_sim_AC = highpass_filter(y_sim, 256, filter_order = 101)
