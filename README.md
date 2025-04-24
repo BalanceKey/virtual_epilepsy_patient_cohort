@@ -1,7 +1,13 @@
 # Virtual epilepsy patient cohort
 The code used for generating and evaluating synthetic data based on empirical data from 30 patients with drug-resistant epilepsy
 
-Dollomaja, B., Wang, H., & Jirsa, V. (2024). Virtual Epileptic Patient Cohort (v1.0) [Data set]. EBRAINS. https://doi.org/10.25493/XWG2-S8X
+The dataset can be found here:
+
+>Dollomaja, B., Wang, H., & Jirsa, V. (2024). *Virtual Epileptic Patient Cohort (v1.0)* [Data set]. **EBRAINS.** https://doi.org/10.25493/XWG2-S8X
+
+The paper describing the dataset: 
+
+>Dollomaja, B., Wang, H. E., Guye, M., Makhalova, J., Bartolomei, F., & Jirsa, V. K. (2025). *Virtual epilepsy patient cohort: generation and evaluation.* **PLOS Computational Biology**, 21(4), e1012911. https://doi.org/10.1371/journal.pcbi.1012911
 
 ## Generating synthetic data
 The code to generate synthetic spontaneous seizures: `virtual_epileptic_seeg_ret_patient.py`\
